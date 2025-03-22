@@ -1,22 +1,10 @@
 import { BottomBlur } from "@/components/bottom-blur";
 import styles from "./page.module.scss";
 import { AlbumContainer } from "@/components/album-container";
-import { Folder } from "../api/types";
-
-
-async function getPages(): Promise<Folder[]> {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/getAlbuns`);
-    if (!res.ok) throw new Error('Falha ao buscar albums');
-    return await res.json();
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-}
+import { getFolders } from "@/lib/api/getFolders";
 
 export default async function Album() {
-  const pagesResponse = await getPages();
+  const pagesResponse = await getFolders();
 
   const pages = pagesResponse
     .sort((a, b) => a.name.localeCompare(b.name))
