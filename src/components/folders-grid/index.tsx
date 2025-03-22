@@ -5,12 +5,10 @@ import { getGridConfig } from "./config";
 
 interface Props {
   subFolders: SubFolder[] | null;
+  pathname: string;
 }
 
-export function FoldersGrid({ subFolders }: Props) {
-  console.log(subFolders);
-  console.log(subFolders?.length);
-
+export function FoldersGrid({ subFolders, pathname }: Props) {
   const gridConfig = getGridConfig(subFolders?.length ?? 0);
 
   return (
@@ -20,6 +18,7 @@ export function FoldersGrid({ subFolders }: Props) {
           key={subFolder.external_id}
           subFolder={subFolder}
           $colSpan={gridConfig[index + 1]}
+          pathname={pathname}
         />
       ))}
     </div>

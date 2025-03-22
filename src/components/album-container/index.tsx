@@ -4,6 +4,7 @@ import { NavigationPill } from "../navigation-pill";
 import styles from "./styles.module.scss";
 import { FoldersGrid } from "../folders-grid";
 import { Folder, SubFolder } from "@/app/api/types";
+import { usePathname } from "next/navigation";
 
 interface Props {
   pages: Folder[];
@@ -13,7 +14,7 @@ export function AlbumContainer({ pages }: Props) {
   const [activeFolder, setActiveFolder] = useState<string>(pages[0].external_id ?? '');
   const [activeSubFolder, setActiveSubFolder] = useState<SubFolder[] | null>(pages[0].sub_folders);
   const containerRef = useRef<HTMLDivElement>(null);
-  console.log("PAGES", pages)
+  const pathname = usePathname(); // Get the current URL
 
   function handleNavigationClick(id: string, button: HTMLButtonElement) {
     setActiveFolder(id);
@@ -44,7 +45,7 @@ export function AlbumContainer({ pages }: Props) {
 
   return (
     <>
-      <FoldersGrid subFolders={activeSubFolder} />
+      <FoldersGrid subFolders={activeSubFolder} pathname={pathname} />
       <nav className={styles.navigation} ref={containerRef}>
         {pages.map((page) => (
           <NavigationPill
