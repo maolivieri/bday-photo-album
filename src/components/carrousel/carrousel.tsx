@@ -23,8 +23,13 @@ export default function Carousel({ slides }: Props) {
     <Swiper
       modules={[Autoplay]}
       slidesPerView={1}
-      autoplay={{ delay: 5000, disableOnInteraction: false }} // Change slide every 5s
+      autoplay={{ delay: 2500, disableOnInteraction: false }}
       loop
+      style={{
+        position: "absolute",
+        zIndex: "-1",
+        inset: 0
+      }}
     >
       {slides.map((slide, index) => (
         <SwiperSlide key={index} className="flex justify-center">

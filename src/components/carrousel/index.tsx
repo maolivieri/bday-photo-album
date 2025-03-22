@@ -31,7 +31,7 @@ export function ImageCarrousel({ setActiveSubFolder, activeSubFolder, activeSubF
   })) ?? [];
 
   return (
-    <div className={styles.page}>
+    <div className={styles.carrouselInset}>
       <Carousel slides={slides} />
       <CloseButton onClick={() => setActiveSubFolder(null)} />
       {canReturn && (<NavigateCarrouselButtonLeft onClick={() => handleNavigationClick(false)} />)}

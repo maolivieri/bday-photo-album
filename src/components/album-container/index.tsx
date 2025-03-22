@@ -61,7 +61,7 @@ export function AlbumContainer({ pages }: Props) {
   };
 
   return (
-    <>
+    <div className={styles.page}>
       <BottomBlur background={blurColor} />
       {activeSubFolder ? (
         <ImageCarrousel
@@ -87,6 +87,6 @@ export function AlbumContainer({ pages }: Props) {
           </NavigationPill>
         ))}
       </nav>
-    </>
+    </div>
   )
 }
