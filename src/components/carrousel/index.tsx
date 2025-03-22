@@ -3,7 +3,6 @@ import { SubFolder } from "@/app/api/types";
 import { CloseButton } from "../close-button";
 import { NavigateCarrouselButtonLeft, NavigateCarrouselButtonRight } from "../navigate-carrousel-button";
 import Carousel, { Slides } from "./carrousel";
-import styles from "./styles.module.scss";
 
 interface Props {
   setActiveSubFolder: (subFolderIndex: number | null) => void;
@@ -31,7 +30,7 @@ export function ImageCarrousel({ setActiveSubFolder, activeSubFolder, activeSubF
   })) ?? [];
 
   return (
-    <div className={styles.carrouselInset}>
+    <div>
       <Carousel slides={slides} />
       <CloseButton onClick={() => setActiveSubFolder(null)} />
       {canReturn && (<NavigateCarrouselButtonLeft onClick={() => handleNavigationClick(false)} />)}

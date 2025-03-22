@@ -16,8 +16,15 @@
 
   &.active {
     background-color: rgba(255, 255, 255, 0.9);
+    color: var(--primary);
     padding: 0 1.5rem;
     -webkit-text-stroke: 0.4px;
     height: 2.25rem;
   }
+
+
+}
+
+.dark {
+  color: var(--white);
 }

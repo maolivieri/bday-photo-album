@@ -82,6 +82,7 @@ export function AlbumContainer({ pages }: Props) {
             key={page.external_id}
             $isActive={activeFolder === page.external_id}
             onClick={(e) => handleNavigationClick(page.external_id, e.currentTarget)}
+            $theme={activeSubFolder ? "dark" : 'light'}
           >
             {page.name}
           </NavigationPill>
