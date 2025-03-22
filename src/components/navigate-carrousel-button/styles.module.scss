@@ -11,7 +11,7 @@
   position: fixed;
   top: 50%;
   left: 1.5rem;
-
+  z-index: 80;
 }
 
 .right {
@@ -27,4 +27,5 @@
   position: fixed;
   top: 50%;
   right: 1.5rem;
+  z-index: 80;
 }

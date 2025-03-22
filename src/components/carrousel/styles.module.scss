@@ -1,0 +1,16 @@
+.page {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+
+.resource {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  img {
+    object-fit: cover;
+  }
+}

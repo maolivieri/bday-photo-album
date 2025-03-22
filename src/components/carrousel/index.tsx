@@ -2,6 +2,8 @@
 import { SubFolder } from "@/app/api/types";
 import { CloseButton } from "../close-button";
 import { NavigateCarrouselButtonLeft, NavigateCarrouselButtonRight } from "../navigate-carrousel-button";
+import Carousel, { Slides } from "./carrousel";
+import styles from "./styles.module.scss";
 
 interface Props {
   setActiveSubFolder: (subFolderIndex: number | null) => void;
@@ -21,13 +23,20 @@ export function ImageCarrousel({ setActiveSubFolder, activeSubFolder, activeSubF
       setActiveSubFolder(newIndex)
     }
   }
+  console.log(activeSubFolder?.resources);
+
+  const slides: Slides[] = activeSubFolder?.resources.map(rs => ({
+    type: rs.resource_type === 'image' ? 'image' : 'video',
+    src: rs.secure_url
+  })) ?? [];
 
   return (
-    <div>
+    <div className={styles.page}>
+      <Carousel slides={slides} />
       <CloseButton onClick={() => setActiveSubFolder(null)} />
       {canReturn && (<NavigateCarrouselButtonLeft onClick={() => handleNavigationClick(false)} />)}
       {canProceed && (<NavigateCarrouselButtonRight onClick={() => handleNavigationClick(true)} />)}
-      {activeSubFolder?.name}
+      {/* {activeSubFolder?.name} */}
     </div>
   )
 }
