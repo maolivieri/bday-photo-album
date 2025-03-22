@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Sacramento, Bellota_Text } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const bellotaText = Bellota_Text({
+  variable: "--font-bellota-text",
+  weight: ["300", "400", "700"]
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const sacramento = Sacramento({
+  variable: "--font-sacramento",
+  weight: ["400"]
 });
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${bellotaText.variable} ${sacramento.variable}`}>
         {children}
       </body>
     </html>
