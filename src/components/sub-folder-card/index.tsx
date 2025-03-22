@@ -27,8 +27,8 @@ export function SubFolderCard({ subFolder, $colSpan, pathname }: Props) {
           />
         )}
         <BottomBlur background="#1A1831" />
-        <p className={styles.title}>{subFolder.name.substring(3)}</p>
       </Link>
+      <p className={styles.title}>{subFolder.name.substring(3)}</p>
     </div>
   )
 }
