@@ -4,7 +4,8 @@ import { NavigationPill } from "../navigation-pill";
 import styles from "./styles.module.scss";
 import { FoldersGrid } from "../folders-grid";
 import { Folder, SubFolder } from "@/app/api/types";
-import { usePathname } from "next/navigation";
+import { BottomBlur } from "../bottom-blur";
+import { ImageCarrousel } from "../carrousel";
 
 interface Props {
   pages: Folder[];
@@ -12,17 +13,33 @@ interface Props {
 
 export function AlbumContainer({ pages }: Props) {
   const [activeFolder, setActiveFolder] = useState<string>(pages[0].external_id ?? '');
-  const [activeSubFolder, setActiveSubFolder] = useState<SubFolder[] | null>(pages[0].sub_folders);
+  const [activeSubFolders, setActiveSubFolders] = useState<SubFolder[] | null>(pages[0].sub_folders);
+  const [activeSubFolder, setActiveSubFolder] = useState<SubFolder | null>(null);
+  const [activeSubFolderIndex, setActiveSubFolderIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const pathname = usePathname(); // Get the current URL
+  const blurColor = activeSubFolder ? "#1A1831" : "#C1BEBB";
 
   function handleNavigationClick(id: string, button: HTMLButtonElement) {
     setActiveFolder(id);
     const selectedFolder = pages.find(page => page.external_id === id);
     if (selectedFolder) {
-      setActiveSubFolder(selectedFolder?.sub_folders);
+      setActiveSubFolders(selectedFolder?.sub_folders);
+      setActiveSubFolder(null)
     }
     scrollToCenter(button);
+  }
+
+  function handleSetActiveSubFolder(index: number | null) {
+    if (index === null || !activeSubFolders) {
+      setActiveSubFolder(null);
+      setActiveSubFolderIndex(null);
+    } else {
+      const findSubFolder = activeSubFolders[index];
+      if (findSubFolder) {
+        setActiveSubFolder(findSubFolder);
+        setActiveSubFolderIndex(index);
+      }
+    }
   }
 
 
@@ -45,7 +62,20 @@ export function AlbumContainer({ pages }: Props) {
 
   return (
     <>
-      <FoldersGrid subFolders={activeSubFolder} pathname={pathname} />
+      <BottomBlur background={blurColor} />
+      {activeSubFolder ? (
+        <ImageCarrousel
+          activeSubFolder={activeSubFolder}
+          setActiveSubFolder={handleSetActiveSubFolder}
+          activeSubFolderIndex={activeSubFolderIndex}
+          count={activeSubFolders?.length}
+        />
+      ) : (
+        <FoldersGrid
+          subFolders={activeSubFolders}
+          setActiveSubFolder={handleSetActiveSubFolder}
+        />
+      )}
       <nav className={styles.navigation} ref={containerRef}>
         {pages.map((page) => (
           <NavigationPill

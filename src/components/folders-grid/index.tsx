@@ -1,3 +1,4 @@
+'use client'
 import { SubFolder } from "@/app/api/types";
 import styles from "./styles.module.scss";
 import { SubFolderCard } from "../sub-folder-card";
@@ -5,10 +6,10 @@ import { getGridConfig } from "./config";
 
 interface Props {
   subFolders: SubFolder[] | null;
-  pathname: string;
+  setActiveSubFolder: (subFolderIndex: number) => void;
 }
 
-export function FoldersGrid({ subFolders, pathname }: Props) {
+export function FoldersGrid({ subFolders, setActiveSubFolder }: Props) {
   const gridConfig = getGridConfig(subFolders?.length ?? 0);
 
   return (
@@ -18,7 +19,7 @@ export function FoldersGrid({ subFolders, pathname }: Props) {
           key={subFolder.external_id}
           subFolder={subFolder}
           $colSpan={gridConfig[index + 1]}
-          pathname={pathname}
+          onClick={() => setActiveSubFolder(index)}
         />
       ))}
     </div>
