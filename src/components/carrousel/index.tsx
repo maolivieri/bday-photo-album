@@ -4,6 +4,7 @@ import { CloseButton } from "../close-button";
 import { NavigateCarrouselButtonLeft, NavigateCarrouselButtonRight } from "../navigate-carrousel-button";
 import Carousel, { Slides } from "./carrousel";
 import { ResourceInfoBox } from "../resource-info-box";
+import { useEffect } from "react";
 
 interface Props {
   setActiveSubFolder: (subFolderIndex: number | null) => void;
@@ -13,6 +14,7 @@ interface Props {
 }
 
 export function ImageCarrousel({ setActiveSubFolder, activeSubFolder, activeSubFolderIndex, count }: Props) {
+  useEffect(() => { }, [activeSubFolder])
   const canReturn = (0 !== activeSubFolderIndex);
   const canProceed = count && ((count - 1) !== activeSubFolderIndex);
 
@@ -31,8 +33,6 @@ export function ImageCarrousel({ setActiveSubFolder, activeSubFolder, activeSubF
     type: rs.resource_type === 'image' ? 'image' : 'video',
     src: rs.secure_url
   }));
-
-  console.log("IMAGE", activeSubFolder)
 
   return (
     <div>

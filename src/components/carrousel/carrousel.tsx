@@ -4,8 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
-import Image from "next/image";
-import style from "./styles.module.scss";
+import { useEffect, useRef } from "react";
+import { CarrouselMedia } from "../carrousel-media";
 
 interface Props {
   slides: Slides[]
@@ -17,13 +17,25 @@ export interface Slides {
 }
 
 export default function Carousel({ slides }: Props) {
-  console.log("SLIDES DEDSDS", slides)
+  // useEffect(() => {
+  // }, [slides])
+
+  const swiperRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (swiperRef.current) {
+      setTimeout(() => {
+        swiperRef.current.swiper.autoplay.start(); // Restart autoplay when component mounts
+      }, 500);
+    }
+  }, []);
 
   return (
     <Swiper
+      ref={swiperRef}
       modules={[Autoplay]}
       slidesPerView={1}
-      autoplay={{ delay: 2500, disableOnInteraction: false }}
+      autoplay={{ delay: 2500, disableOnInteraction: false, stopOnLastSlide: false }}
       loop
       style={{
         position: "absolute",
@@ -32,23 +44,11 @@ export default function Carousel({ slides }: Props) {
       }}
     >
       {slides.map((slide, index) => (
-        <SwiperSlide key={index} className="flex justify-center">
-          <div className={style.resource}>
-            {slide.type === "image" ? (
-              // <img src={slide.src} className="w-full h-auto" alt="" />
-              <Image src={slide.src} fill alt="" />
-            ) : (
-              <video
-                src={slide.src}
-                className="w-full h-auto"
-                autoPlay
-                muted
-                loop
-                playsInline
-              />
-            )
-            }
-          </div>
+        <SwiperSlide key={index}>
+          <CarrouselMedia
+            src={slide.src}
+            type={slide.type}
+          />
         </SwiperSlide>
       ))}
     </Swiper>
