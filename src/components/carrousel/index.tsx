@@ -2,9 +2,10 @@
 import { SubFolder } from "@/app/api/types";
 import { CloseButton } from "../close-button";
 import { NavigateCarrouselButtonLeft, NavigateCarrouselButtonRight } from "../navigate-carrousel-button";
-import Carousel, { Slides } from "./carrousel";
+import { Slides } from "./swiper";
 import { ResourceInfoBox } from "../resource-info-box";
 import { useEffect } from "react";
+import { KeenSliderCarousel } from "./keenSlider";
 
 interface Props {
   setActiveSubFolder: (subFolderIndex: number | null) => void;
@@ -36,7 +37,8 @@ export function ImageCarrousel({ setActiveSubFolder, activeSubFolder, activeSubF
 
   return (
     <div>
-      <Carousel slides={slides} />
+      {/* <SwiperCarousel slides={slides} /> */}
+      <KeenSliderCarousel slides={slides} />
       <CloseButton onClick={() => setActiveSubFolder(null)} />
       {canReturn && (<NavigateCarrouselButtonLeft onClick={() => handleNavigationClick(false)} />)}
       {canProceed && (<NavigateCarrouselButtonRight onClick={() => handleNavigationClick(true)} />)}

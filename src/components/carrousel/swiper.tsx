@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import { useEffect, useRef } from "react";
 import { CarrouselMedia } from "../carrousel-media";
+import styles from "./styles.module.scss";
 
 interface Props {
   slides: Slides[]
@@ -16,7 +17,7 @@ export interface Slides {
   src: string
 }
 
-export default function Carousel({ slides }: Props) {
+export function SwiperCarousel({ slides }: Props) {
   // useEffect(() => {
   // }, [slides])
 
@@ -37,11 +38,12 @@ export default function Carousel({ slides }: Props) {
       slidesPerView={1}
       autoplay={{ delay: 2500, disableOnInteraction: false, stopOnLastSlide: false }}
       loop
-      style={{
-        position: "absolute",
-        zIndex: "-1",
-        inset: 0
-      }}
+      className={styles.carousel}
+    // style={{
+    //   position: "absolute",
+    //   zIndex: "-1",
+    //   inset: 0
+    // }}
     >
       {slides.map((slide, index) => (
         <SwiperSlide key={index}>

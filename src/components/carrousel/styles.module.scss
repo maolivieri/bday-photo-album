@@ -8,6 +8,13 @@
   }
 }
 
+.carousel {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  display: flex;
+}
+
 .info-box {
   display: flex;
   flex-direction: column;
