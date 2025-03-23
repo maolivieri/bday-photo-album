@@ -7,3 +7,9 @@
     object-fit: cover;
   }
 }
+
+.info-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

@@ -3,6 +3,7 @@ import { SubFolder } from "@/app/api/types";
 import { CloseButton } from "../close-button";
 import { NavigateCarrouselButtonLeft, NavigateCarrouselButtonRight } from "../navigate-carrousel-button";
 import Carousel, { Slides } from "./carrousel";
+import { ResourceInfoBox } from "../resource-info-box";
 
 interface Props {
   setActiveSubFolder: (subFolderIndex: number | null) => void;
@@ -22,12 +23,16 @@ export function ImageCarrousel({ setActiveSubFolder, activeSubFolder, activeSubF
       setActiveSubFolder(newIndex)
     }
   }
-  console.log(activeSubFolder?.resources);
 
-  const slides: Slides[] = activeSubFolder?.resources.map(rs => ({
+  const resources = activeSubFolder?.resources.sort((a, b) => a.display_name.localeCompare(b.display_name)) ?? []
+  const resourceMetadata = resources[0]?.context?.custom;
+
+  const slides: Slides[] = resources.map(rs => ({
     type: rs.resource_type === 'image' ? 'image' : 'video',
     src: rs.secure_url
-  })) ?? [];
+  }));
+
+  console.log("IMAGE", activeSubFolder)
 
   return (
     <div>
@@ -35,7 +40,10 @@ export function ImageCarrousel({ setActiveSubFolder, activeSubFolder, activeSubF
       <CloseButton onClick={() => setActiveSubFolder(null)} />
       {canReturn && (<NavigateCarrouselButtonLeft onClick={() => handleNavigationClick(false)} />)}
       {canProceed && (<NavigateCarrouselButtonRight onClick={() => handleNavigationClick(true)} />)}
-      {/* {activeSubFolder?.name} */}
+      {resourceMetadata && (<ResourceInfoBox
+        title={activeSubFolder?.name.substring(3) ?? ""}
+        metadata={resourceMetadata}
+      />)}
     </div>
   )
 }

@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight } from '@phosphor-icons/react/dist/ssr';
 export function NavigateCarrouselButtonRight({ ...props }: ComponentProps<'button'>) {
   return (
     <button className={styles.right} {...props}>
-      <ArrowRight color='#322F4D' weight="bold" />
+      <ArrowRight color='#FFF' weight="bold" />
     </button>
   )
 }
@@ -13,7 +13,7 @@ export function NavigateCarrouselButtonRight({ ...props }: ComponentProps<'butto
 export function NavigateCarrouselButtonLeft({ ...props }: ComponentProps<'button'>) {
   return (
     <button className={styles.left} {...props}>
-      <ArrowLeft color='#322F4D' weight="bold" />
+      <ArrowLeft color='#FFF' weight="bold" />
     </button>
   )
 }

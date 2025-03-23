@@ -5,7 +5,7 @@ import { ComponentProps } from 'react';
 export function CloseButton({ ...props }: ComponentProps<'button'>) {
   return (
     <button className={styles.button} {...props}>
-      <X color='#322F4D' weight="bold" />
+      <X color='#FFF' weight="bold" />
     </button>
   )
 }
