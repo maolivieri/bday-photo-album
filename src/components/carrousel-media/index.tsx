@@ -11,12 +11,17 @@ export function CarrouselMedia({ src, type, ...props }: Props) {
   return (
     <div className={styles.resource} {...props}>
       {type === "image" ? (
-        // <img src={slide.src} className="w-full h-auto" alt="" />
-        <Image src={src} fill alt="" />
+        <div className={styles.image}>
+          <Image
+            src={src}
+            fill
+            alt=""
+          />
+        </div>
       ) : (
         <video
           src={src}
-          className="w-full h-auto"
+          className={styles.video}
           autoPlay
           muted
           loop
