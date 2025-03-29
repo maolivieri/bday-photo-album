@@ -5,12 +5,14 @@ import { getFolders } from "@/lib/api/getFolders";
 
 const bellotaText = Bellota_Text({
   variable: "--font-bellota-text",
-  weight: ["300", "400", "700"]
+  weight: ["300", "400", "700"],
+  subsets: ['latin']
 });
 
 const sacramento = Sacramento({
   variable: "--font-sacramento",
-  weight: ["400"]
+  weight: ["400"],
+  subsets: ['latin']
 });
 
 export const metadata: Metadata = {

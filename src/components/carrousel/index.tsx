@@ -2,10 +2,9 @@
 import { SubFolder } from "@/app/api/types";
 import { CloseButton } from "../close-button";
 import { NavigateCarrouselButtonLeft, NavigateCarrouselButtonRight } from "../navigate-carrousel-button";
-import { Slides } from "./swiper";
 import { ResourceInfoBox } from "../resource-info-box";
 import { useEffect } from "react";
-import { KeenSliderCarousel } from "./keenSlider";
+import { KeenSliderCarousel, Slides } from "./keenSlider";
 
 interface Props {
   setActiveSubFolder: (subFolderIndex: number | null) => void;

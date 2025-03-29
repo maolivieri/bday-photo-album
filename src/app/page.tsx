@@ -13,6 +13,7 @@ export default function Home() {
       <TransparentLinkButton href={'/album'}>Venha me ver crescer</TransparentLinkButton>
       <div className={styles['cover-image']}>
         <Image
+          className={styles['bg-image']}
           src="https://res.cloudinary.com/dmdx95emj/image/upload/v1742600824/CAPA_fsyjwl.jpg"
           alt="Foto da capa"
           fill
