@@ -16,7 +16,7 @@ export function FoldersGrid({ subFolders, setActiveSubFolder }: Props) {
     <div className={styles['folders-grid']}>
       {subFolders && subFolders.map((subFolder, index) => (
         <SubFolderCard
-          key={subFolder.external_id}
+          key={subFolder?.external_id}
           subFolder={subFolder}
           $colSpan={gridConfig[index + 1]}
           onClick={() => setActiveSubFolder(index)}

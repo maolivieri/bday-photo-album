@@ -10,7 +10,7 @@ export async function GET() {
     for (const album of albums.folders) {
       const sub_folders: SubFolderResponse = await cloudinary.api.sub_folders(album.path);
       const subFoldersResponse: SubFolder[] = [];
-      for (const sub_folder of sub_folders.folders) {
+      for (const sub_folder of sub_folders?.folders) {
         const resources = await cloudinary.api.resources_by_asset_folder(sub_folder.path, {
           metadata: true,
           context: true,

@@ -12,8 +12,8 @@ interface Props {
 }
 
 export function AlbumContainer({ pages }: Props) {
-  const [activeFolder, setActiveFolder] = useState<string>(pages[0].external_id ?? '');
-  const [activeSubFolders, setActiveSubFolders] = useState<SubFolder[] | null>(pages[0].sub_folders);
+  const [activeFolder, setActiveFolder] = useState<string>(pages[0]?.external_id ?? '');
+  const [activeSubFolders, setActiveSubFolders] = useState<SubFolder[] | null>(pages[0]?.sub_folders);
   const [activeSubFolder, setActiveSubFolder] = useState<SubFolder | null>(null);
   const [activeSubFolderIndex, setActiveSubFolderIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -24,7 +24,7 @@ export function AlbumContainer({ pages }: Props) {
 
   function handleNavigationClick(id: string, button: HTMLButtonElement) {
     setActiveFolder(id);
-    const selectedFolder = pages.find(page => page.external_id === id);
+    const selectedFolder = pages.find(page => page?.external_id === id);
     if (selectedFolder) {
       setActiveSubFolders(selectedFolder?.sub_folders);
       setActiveSubFolder(null)
@@ -82,9 +82,9 @@ export function AlbumContainer({ pages }: Props) {
       <nav className={styles.navigation} ref={containerRef}>
         {pages.map((page) => (
           <NavigationPill
-            key={page.external_id}
-            $isActive={activeFolder === page.external_id}
-            onClick={(e) => handleNavigationClick(page.external_id, e.currentTarget)}
+            key={page?.external_id}
+            $isActive={activeFolder === page?.external_id}
+            onClick={(e) => handleNavigationClick(page?.external_id, e.currentTarget)}
             $theme={activeSubFolder ? "dark" : 'light'}
           >
             {page.name}

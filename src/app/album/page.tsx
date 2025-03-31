@@ -11,6 +11,10 @@ export default async function Album() {
       name: page.name.substring(3)
     }))
 
+  if (!pages) {
+    return <></>
+  }
+
   return (
     <AlbumContainer pages={pages} />
   )
