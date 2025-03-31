@@ -16,7 +16,21 @@ export async function GET() {
           context: true,
           media_metadata: true,
           image_metadata: true,
-          fields: ['context']
+          // fields: ['context', 'secure_url', 'display_name']
+          // fields: [
+          //   'context',
+          //   'secure_url',
+          //   'asset_folder',
+          //   'asset_id',
+          //   'display_name',
+          //   'resource_type',
+          //   'format',
+          //   'public_id',
+          //   'height',
+          //   'width',
+          //   'type',
+          //   'url',
+          // ]
         });
         subFoldersResponse.push({
           ...sub_folder,

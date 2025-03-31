@@ -36,7 +36,6 @@ export function ImageCarrousel({ setActiveSubFolder, activeSubFolder, activeSubF
 
   return (
     <div>
-      {/* <SwiperCarousel slides={slides} /> */}
       <KeenSliderCarousel slides={slides} />
       <CloseButton onClick={() => setActiveSubFolder(null)} />
       {canReturn && (<NavigateCarrouselButtonLeft onClick={() => handleNavigationClick(false)} />)}

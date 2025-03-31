@@ -19,6 +19,9 @@ export function AlbumContainer({ pages }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const blurColor = activeSubFolder ? "#1A1831" : "#C1BEBB";
 
+  console.log("RES ========> ", pages)
+
+
   function handleNavigationClick(id: string, button: HTMLButtonElement) {
     setActiveFolder(id);
     const selectedFolder = pages.find(page => page.external_id === id);
