@@ -5,6 +5,7 @@ export async function getFolders(): Promise<Folder[]> {
     const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/getAlbuns`)
     // { cache: 'force-cache' }
     // );
+    console.log("API GET", res)
     if (!res.ok) throw new Error('Falha ao buscar albums');
     return await res.json();
   } catch (error) {
